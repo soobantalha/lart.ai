@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ====== ROOT VARIABLES ====== */
         :root {
             --primary: #8e6c49;
             --secondary: #c9a87a;
@@ -20,29 +21,20 @@
             --gold-light: #f8e6c3;
             --gold-dark: #b89446;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+
         body {
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            background: linear-gradient(135deg, var(--darker), var(--dark));
             color: var(--light);
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ====== HEADER ====== */
         header {
             background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
@@ -52,19 +44,8 @@
             z-index: 100;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo { display: flex; align-items: center; gap: 15px; }
         .logo h1 {
             font-family: 'Cinzel', serif;
             font-size: 28px;
@@ -74,1164 +55,194 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
         }
-        
-        .logo-icon {
-            font-size: 32px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .logo-subtext {
-            font-size: 10px;
-            color: var(--secondary);
-            letter-spacing: 3px;
-            margin-left: 5px;
-            text-transform: uppercase;
-        }
-        
-        .company-name {
-            font-family: 'Cinzel', serif;
-            font-size: 14px;
-            color: var(--accent);
-            margin-top: 5px;
-            letter-spacing: 2px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            font-size: 15px;
-            letter-spacing: 1px;
-        }
-        
-        nav a:hover {
-            color: var(--accent);
-        }
-        
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-            transition: width 0.3s ease;
-        }
-        
-        nav a:hover::after {
-            width: 100%;
-        }
-        
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 100px 0;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 20px;
-            margin: 40px 0;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at top right, rgba(142, 108, 73, 0.1), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(212, 175, 55, 0.1), transparent 40%);
-            z-index: -1;
-        }
-        
-        .hero h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 52px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent), var(--gold-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-        }
-        
-        .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: #ccc;
-            font-weight: 300;
-            letter-spacing: 0.5px;
-        }
-        
-        .cta-button {
-            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-            color: var(--darker);
-            border: none;
-            padding: 18px 45px;
-            font-size: 16px;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            box-shadow: 0 10px 30px rgba(142, 108, 73, 0.4);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
-        }
-        
-        .cta-button:hover:before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(142, 108, 73, 0.5);
-        }
-        
-        /* Premium Elements */
-        .gold-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            margin: 40px 0;
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .premium-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-            color: var(--darker);
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            border-radius: 1px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-        
-        /* Chat Interface */
-        .chat-container {
-            background: rgba(15, 15, 15, 0.7);
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 40px auto;
-            max-width: 1000px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            position: relative;
-        }
-        
-        .chat-container:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-        
-        .chat-header {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        
-        .chat-header h2 {
-            font-size: 20px;
-            font-family: 'Cinzel', serif;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .chat-messages {
-            height: 500px;
-            overflow-y: auto;
-            padding: 25px;
-            background: rgba(10, 10, 10, 0.5);
-        }
-        
-        .message {
-            margin-bottom: 25px;
-            max-width: 80%;
-            padding: 20px;
-            border-radius: 4px;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .user-message {
-            background: linear-gradient(45deg, rgba(142, 108, 73, 0.2), rgba(201, 168, 122, 0.2));
-            border-left: 3px solid var(--accent);
-            margin-left: auto;
-            border-radius: 4px 4px 0 4px;
-        }
-        
-        .bot-message {
-            background: rgba(20, 20, 20, 0.7);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 4px 4px 4px 0;
-            border-left: 3px solid var(--secondary);
-        }
-        
-        .chat-input {
-            display: flex;
-            padding: 20px;
-            background: rgba(15, 15, 15, 0.8);
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        
-        .chat-input input {
-            flex: 1;
-            padding: 18px;
-            border-radius: 2px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            background: rgba(26, 26, 26, 0.8);
-            color: var(--light);
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-        }
-        
-        .chat-input input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 1px var(--accent);
-        }
-        
-        .chat-input button {
-            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-            color: var(--dark);
-            border: none;
-            border-radius: 2px;
-            padding: 18px 30px;
-            margin-left: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-        
-        .chat-input button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(142, 108, 73, 0.4);
-        }
-        
-        /* Recipe Card */
-        .recipe-card {
-            background: rgba(20, 20, 20, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 4px;
-            padding: 30px;
-            margin: 20px 0;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .recipe-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-        
-        .recipe-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-        
-        .recipe-title {
-            font-family: 'Cinzel', serif;
-            font-size: 32px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .recipe-meta {
-            display: flex;
-            gap: 25px;
-            color: var(--secondary);
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-        
-        .recipe-section {
-            margin-bottom: 30px;
-        }
-        
-        .recipe-section h4 {
-            font-family: 'Cinzel', serif;
-            margin-bottom: 20px;
-            font-size: 22px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        
-        .ingredients-list, .instructions-list, .tips-list {
-            list-style: none;
-        }
-        
-        .ingredients-list li, .instructions-list li, .tips-list li {
-            margin-bottom: 15px;
-            padding-left: 30px;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        .ingredients-list li:before {
-            content: "•";
-            color: var(--accent);
-            position: absolute;
-            left: 0;
-            font-size: 20px;
-        }
-        
-        .instructions-list li:before {
-            content: counter(step);
-            counter-increment: step;
-            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-            color: var(--dark);
-            width: 28px;
-            height: 28px;
-            border-radius: 2px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            left: 0;
-            font-size: 14px;
-            font-weight: bold;
-        }
-        
-        .instructions-list {
-            counter-reset: step;
-        }
-        
-        .tips-list li:before {
-            content: "💡";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-        
-        .recipe-stats {
-            display: flex;
-            gap: 40px;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-family: 'Cinzel', serif;
-            font-size: 36px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            color: var(--secondary);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-        }
-        
-        .features h2 {
-            font-family: 'Cinzel', serif;
-            text-align: center;
-            font-size: 40px;
-            margin-bottom: 60px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .feature-card {
-            background: rgba(20, 20, 20, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 4px;
-            padding: 40px 30px;
-            text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .feature-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
-        
-        .feature-icon {
-            font-size: 45px;
-            margin-bottom: 25px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .feature-card h3 {
-            font-family: 'Cinzel', serif;
-            margin-bottom: 20px;
-            font-size: 24px;
-            color: var(--light);
-        }
-        
-        .feature-card p {
-            color: var(--secondary);
-            line-height: 1.7;
-        }
-        
-        /* Footer */
-        footer {
-            background: rgba(10, 10, 10, 0.9);
-            padding: 60px 0 40px;
-            text-align: center;
-            margin-top: 80px;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-        }
-        
-        footer:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .footer-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 28px;
-            margin-bottom: 25px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .company-name-footer {
-            font-family: 'Cinzel', serif;
-            font-size: 16px;
-            color: var(--accent);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 40px;
-            margin-bottom: 25px;
-        }
-        
-        .footer-links a {
-            color: var(--light);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 15px;
-            letter-spacing: 1px;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-        
-        .copyright {
-            color: var(--secondary);
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            nav ul {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .hero h2 {
-                font-size: 36px;
-            }
-            
-            .recipe-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .recipe-meta {
-                flex-wrap: wrap;
-            }
-            
-            .recipe-stats {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        /* Loading spinner */
-        .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            border-top: 3px solid var(--accent);
-            width: 30px;
-            height: 30px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Welcome message */
-        .welcome-message {
-            text-align: center;
-            padding: 30px;
-            background: rgba(142, 108, 73, 0.1);
-            border-radius: 4px;
-            margin: 20px 0;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-        }
-        
-        .welcome-message:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-        
-        .welcome-message h3 {
-            font-family: 'Cinzel', serif;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, var(--gold-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .logo-icon { font-size: 32px; background: linear-gradient(45deg, var(--gold-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo-subtext { font-size: 10px; color: var(--secondary); letter-spacing: 3px; margin-left: 5px; text-transform: uppercase; }
+        .company-name { font-family: 'Cinzel', serif; font-size: 14px; color: var(--accent); margin-top: 5px; letter-spacing: 2px; }
+        nav ul { display: flex; list-style: none; gap: 30px; flex-wrap: wrap; }
+        nav a { color: var(--light); text-decoration: none; font-weight: 500; transition: all 0.3s ease; position: relative; font-size: 15px; letter-spacing: 1px; }
+        nav a:hover { color: var(--accent); }
+        nav a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 1px; background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); transition: width 0.3s ease; }
+        nav a:hover::after { width: 100%; }
 
-        /* Dynamic gradient animation */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        /* ====== HERO ====== */
+        .hero { text-align: center; padding: 100px 20px; background: rgba(255, 255, 255, 0.02); border-radius: 20px; margin: 40px 0; position: relative; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.1); }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, rgba(142,108,73,0.1), transparent 40%), radial-gradient(circle at bottom left, rgba(212,175,55,0.1), transparent 40%); z-index: -1; }
+        .hero h2 { font-family: 'Cinzel', serif; font-size: 52px; margin-bottom: 20px; background: linear-gradient(45deg, var(--gold-light), var(--accent), var(--gold-dark)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+        .hero p { font-size: 20px; max-width: 700px; margin: 0 auto 40px; color: #ccc; font-weight: 300; letter-spacing: 0.5px; }
+        .cta-button { background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end)); color: var(--darker); border: none; padding: 18px 45px; font-size: 16px; border-radius: 2px; cursor: pointer; transition: all 0.3s ease; font-weight: 600; box-shadow: 0 10px 30px rgba(142,108,73,0.4); letter-spacing: 1.5px; text-transform: uppercase; position: relative; overflow: hidden; }
+        .cta-button:before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
+        .cta-button:hover:before { left: 100%; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(142,108,73,0.5); }
 
-        .gradient-bg {
-            background: linear-gradient(270deg, var(--gradient-start), var(--gradient-mid), var(--gradient-end));
-            background-size: 200% 200%;
-            animation: gradientShift 10s ease infinite;
-        }
-        
-        /* Status indicator */
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-left: 12px;
-        }
-        
-        .status-online {
-            background-color: var(--accent);
-            box-shadow: 0 0 10px var(--accent);
-        }
-        
-        .status-offline {
-            background-color: #8b4513;
-        }
-        
-        .status-warning {
-            background-color: #daa520;
-        }
-        
-        .error-message {
-            color: #daa520;
-            padding: 12px;
-            border-radius: 2px;
-            background: rgba(218, 165, 32, 0.1);
-            margin: 12px 0;
-            border-left: 3px solid #daa520;
-        }
-        
-        .api-status {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 12px;
-            margin-top: 15px;
-            border-radius: 2px;
-            background: rgba(255, 255, 255, 0.05);
-            font-size: 14px;
-        }
-        
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(20, 20, 20, 0.5);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--gradient-start);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
+        /* ====== GOLD DIVIDER ====== */
+        .gold-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); margin: 40px auto; width: 80%; }
+
+        /* ====== WELCOME ====== */
+        .welcome-message { text-align: center; padding: 30px; background: rgba(142,108,73,0.1); border-radius: 4px; margin: 20px 0; border: 1px solid rgba(212,175,55,0.1); position: relative; }
+        .welcome-message:before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+        .welcome-message h3 { font-family: 'Cinzel', serif; margin-bottom: 15px; background: linear-gradient(45deg, var(--gold-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* ====== CHAT ====== */
+        .chat-container { background: rgba(15,15,15,0.7); border-radius: 4px; overflow: hidden; margin: 40px auto; max-width: 1000px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); border: 1px solid rgba(212,175,55,0.15); position: relative; }
+        .chat-header { background: rgba(0,0,0,0.3); padding: 20px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(212,175,55,0.1); }
+        .chat-header h2 { font-size: 20px; font-family: 'Cinzel', serif; background: linear-gradient(45deg, var(--gold-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .chat-messages { height: 500px; overflow-y: auto; padding: 25px; background: rgba(10,10,10,0.5); }
+        .message { margin-bottom: 25px; max-width: 80%; padding: 20px; border-radius: 4px; position: relative; font-size: 15px; }
+        .message.user { background: rgba(142,108,73,0.15); align-self: flex-end; color: var(--light); }
+        .message.ai { background: rgba(212,175,55,0.15); color: var(--light); }
+        .chat-input { display: flex; gap: 15px; padding: 20px; border-top: 1px solid rgba(212,175,55,0.1); }
+        .chat-input input { flex: 1; padding: 15px; border-radius: 4px; border: none; font-size: 15px; background: rgba(0,0,0,0.2); color: var(--light); outline: none; }
+        .chat-input button { background: var(--accent); color: var(--dark); border: none; padding: 15px 25px; font-size: 15px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; }
+        .chat-input button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
+
+        /* ====== SPINNER ====== */
+        .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(212,175,55,0.3); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin-left: 10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ====== ERROR MESSAGE ====== */
+        .error-message { color: #ff4c4c; text-align: center; margin-top: 10px; font-weight: 500; }
+
     </style>
 </head>
 <body>
     <header>
         <div class="container header-content">
             <div class="logo">
-                <span class="logo-icon">👑</span>
-                <div>
-                    <h1>L'Art Culinaire AI</h1>
-                    <div class="logo-subtext">EXQUISITE RECIPE GENERATION</div>
-                    <div class="company-name">SOOBAN TALHA PRODUCTIONS</div>
-                </div>
+                <i class="fas fa-utensils logo-icon"></i>
+                <h1>L'Art Culinaire</h1>
+                <span class="logo-subtext">VIP FRENCH STYLE</span>
             </div>
+            <div class="company-name">Sooban Talha Productions Pvt Ltd</div>
             <nav>
                 <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#chat">Create</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#recipes">Recipes</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="container">
-        <section class="hero">
-            <div class="premium-badge">EXQUISITE CULINARY AI</div>
-            <h2>The Art of Fine Dining, Perfected by AI</h2>
-            <p>Experience the future of gourmet cuisine with our AI-powered recipe architect. Discover, create, and elevate your culinary journey to unprecedented heights.</p>
-            <button class="cta-button">Explore Masterpieces</button>
+    <div class="container">
+        <section class="hero" id="home">
+            <h2>Welcome to L'Art Culinaire AI</h2>
+            <p>Experience ultra-luxury French-style recipes, created with elegance, precision, and AI intelligence. Your VIP culinary journey starts here.</p>
+            <button class="cta-button" id="createRecipeBtn">Create Recipe</button>
         </section>
 
         <div class="gold-divider"></div>
 
-        <div class="welcome-message fade-in">
-            <h3>Ready to Create - No Setup Required!</h3>
-            <p>Our AI culinary master is ready to assist you. Simply describe your desired recipe below and receive an exquisite creation instantly!</p>
-            <div class="api-status" id="api-status">
-                <span> </span>
-                <span id="status-text">Checking...</span>
-                <span class="status-indicator" id="status-indicator"></span>
-            </div>
-        </div>
+        <section class="welcome-message">
+            <h3>Bonjour, Chef!</h3>
+            <p>Type your ingredients or style preference, hit "Create Recipe", and witness your personalized gourmet recipe come alive. Only the finest culinary AI experience.</p>
+        </section>
 
-        <section id="chat" class="chat-container fade-in">
+        <div class="chat-container" id="recipes">
             <div class="chat-header">
-                <div class="feature-icon">
-                    <i class="fas fa-crown"></i>
-                </div>
-                <h2>Concierge Recipe Creation</h2>
+                <h2>Recipe AI Chat</h2>
             </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="message bot-message">
-                    <p>Good day. I am L'Art Culinaire AI, your personal gourmet recipe architect. What masterpiece shall we create today?</p>
-                </div>
-            </div>
+            <div class="chat-messages" id="chatMessages"></div>
             <div class="chat-input">
-                <input type="text" id="user-input" placeholder="Describe your desired culinary masterpiece...">
-                <button id="send-message">Create Recipe</button>
+                <input type="text" id="chatInput" placeholder="Enter ingredients or recipe style..." />
+                <button id="sendBtn">Send</button>
             </div>
-        </section>
-
-        <div class="gold-divider"></div>
-
-        <section id="features" class="features">
-            <h2>Exclusive Features</h2>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🎯</div>
-                    <h3>Flavor Architecture</h3>
-                    <p>Our AI analyzes thousands of haute cuisine recipes to create the perfect balance of flavors for the discerning palate.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📊</div>
-                    <h3>Nutritional Intelligence</h3>
-                    <p>Receive detailed nutritional analysis and personalized recommendations based on your dietary requirements.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Ingredient Concierge</h3>
-                    <p>Discover premium ingredient substitutions based on availability, allergies, or personal preferences.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer id="about">
-        <div class="container footer-content">
-            <div class="footer-logo">L'Art Culinaire AI</div>
-            <div class="company-name-footer">SOOBAN TALHA PRODUCTIONS</div>
-            <div class="footer-links">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-                <a href="#">Contact Concierge</a>
-            </div>
-            <p class="copyright"> Sooban Talha Productions</p>
+            <div class="error-message" id="errorMessage"></div>
         </div>
-    </footer>
+    </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
-            const chatMessages = document.getElementById('chat-messages');
-            const userInput = document.getElementById('user-input');
-            const sendMessageBtn = document.getElementById('send-message');
-            const statusIndicator = document.getElementById('status-indicator');
-            const statusText = document.getElementById('status-text');
-            
-            // API endpoint (to be hosted on Vercel as a serverless function)
-            const API_ENDPOINT = '/api/recipe';
-            
-            // API Status Tracking
-            let apiStatus = {
-                available: false,
-                lastChecked: null,
-                retryCount: 0
-            };
-            
-            // Check API status on load
-            checkApiStatus();
-            
-            // Check API status
-            async function checkApiStatus() {
-                try {
-                    statusText.textContent = "Checking...";
-                    statusIndicator.className = "status-indicator status-warning";
-                    
-                    const response = await fetch(API_ENDPOINT, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            test: true
-                        })
-                    });
-                    
-                    if (response.ok) {
-                        apiStatus.available = true;
-                        statusText.textContent = "Online";
-                        statusIndicator.className = "status-indicator status-online";
-                    } else {
-                        apiStatus.available = false;
-                        statusText.textContent = "Service unavailable";
-                        statusIndicator.className = "status-indicator status-offline";
-                    }
-                } catch (error) {
-                    apiStatus.available = false;
-                    statusText.textContent = "Ultra Advanced AI By Sooban Talha";
-                    statusIndicator.className = "status-indicator status-offline";
-                }
-                
-                apiStatus.lastChecked = new Date();
+        const API_ENDPOINT = '/api/recipe'; // Replace with your live backend if available
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const createRecipeBtn = document.getElementById('createRecipeBtn');
+        const errorMessage = document.getElementById('errorMessage');
+
+        const fallbackRecipes = [
+            {
+                name: "Truffle Infused Coq au Vin",
+                cuisine: "French",
+                ingredients: ["Chicken", "Red Wine", "Mushrooms", "Black Truffle"],
+                instructions: ["Marinate chicken in wine", "Sauté mushrooms", "Cook chicken slowly", "Add truffle"],
+                tips: ["Use fresh truffle for luxury taste"],
+                score: 98
+            },
+            {
+                name: "Foie Gras Terrine",
+                cuisine: "French",
+                ingredients: ["Foie Gras", "Salt", "Pepper", "Armagnac"],
+                instructions: ["Season foie gras", "Layer in terrine mold", "Bake gently", "Chill overnight"],
+                tips: ["Serve with brioche and fig jam"],
+                score: 95
             }
-            
-            // Dynamic gold effect
-            const root = document.documentElement;
-            const gradients = [
-                { start: '#8e6c49', mid: '#c9a87a', end: '#d4af37' },
-                { start: '#b38728', mid: '#f3da75', end: '#d4af37' },
-                { start: '#8e6c49', mid: '#ad8c67', end: '#c9a87a' },
-                { start: '#a67c52', mid: '#bfa38f', end: '#d4af37' }
-            ];
-            
-            let currentGradient = 0;
-            
-            // Change gradients every 10 seconds
-            setInterval(() => {
-                currentGradient = (currentGradient + 1) % gradients.length;
-                const gradient = gradients[currentGradient];
-                
-                root.style.setProperty('--gradient-start', gradient.start);
-                root.style.setProperty('--gradient-mid', gradient.mid);
-                root.style.setProperty('--gradient-end', gradient.end);
-            }, 10000);
-            
-            // Send message function
-            async function sendMessage() {
-                const message = userInput.value.trim();
-                if (!message) return;
-                
-                // Add user message to chat
-                addMessage(message, 'user');
-                userInput.value = '';
-                
-                // Show loading indicator
-                const loadingDiv = document.createElement('div');
-                loadingDiv.className = 'message bot-message';
-                loadingDiv.innerHTML = '<div class="spinner"></div>';
-                chatMessages.appendChild(loadingDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-                
-                try {
-                    // Call our serverless function
-                    const response = await fetch(API_ENDPOINT, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            message: message
-                        })
-                    });
-                    
-                    // Remove loading indicator
-                    chatMessages.removeChild(loadingDiv);
-                    
-                    if (!response.ok) {
-                        const errorData = await response.json().catch(() => ({}));
-                        throw new Error(errorData.error?.message || `API error: ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    
-                    if (data.error) {
-                        addMessage(`Error: ${data.error.message}`, 'bot');
-                        return;
-                    }
-                    
-                    // Display the recipe
-                    displayRecipe(data.recipe);
-                } catch (error) {
-                    // Remove loading indicator
-                    if (chatMessages.contains(loadingDiv)) {
-                        chatMessages.removeChild(loadingDiv);
-                    }
-                    
-                    // Update API status
-                    apiStatus.available = false;
-                    statusText.textContent = "API Error";
-                    statusIndicator.className = "status-indicator status-offline";
-                    
-                    // Use fallback recipe
-                    useFallbackRecipe(message);
-                }
-            }
-            
-            // Use fallback recipe when API is unavailable
-            function useFallbackRecipe(message) {
-                const fallbackRecipes = [
-                    {
-                        "name": "Truffle Infused Wild Mushroom Risotto",
-                        "cuisine": "Italian",
-                        "difficulty": "Intermediate",
-                        "prep_time": "45 minutes",
-                        "ingredients": [
-                            "1 cup Arborio rice", "4 cups vegetable broth", "1 cup mixed wild mushrooms",
-                            "2 tbsp black truffle oil", "1 shallot, finely chopped", "1/2 cup dry white wine",
-                            "1/4 cup grated Parmesan cheese", "2 tbsp butter", "1 tbsp fresh thyme leaves",
-                            "Salt and white pepper to taste", "Fresh truffle shavings for garnish"
-                        ],
-                        "instructions": [
-                            "Heat the truffle oil in a large pan over medium heat. Add shallots and sauté until translucent.",
-                            "Add wild mushrooms and cook until they release their moisture and become golden.",
-                            "Stir in Arborio rice, coating it with the oil and toasting for 2 minutes.",
-                            "Pour in white wine and cook until mostly absorbed, stirring constantly.",
-                            "Add warm broth one ladle at a time, allowing each addition to be absorbed before adding the next.",
-                            "Continue this process until rice is creamy yet al dente (about 18-20 minutes).",
-                            "Remove from heat and stir in butter, Parmesan, and thyme. Season to taste.",
-                            "Serve immediately garnished with fresh truffle shavings and a drizzle of truffle oil."
-                        ],
-                        "tips": [
-                            "Use a wide, shallow pan for even cooking of the risotto.",
-                            "Keep broth at a steady simmer to maintain cooking temperature.",
-                            "Stir constantly to develop the creamy starch texture.",
-                            "For extra richness, finish with a tablespoon of mascarpone."
-                        ],
-                        "score": 92
-                    },
-                    {
-                        "name": "Saffron and Seafood Paella",
-                        "cuisine": "Spanish",
-                        "difficulty": "Advanced",
-                        "prep_time": "1 hour",
-                        "ingredients": [
-                            "1 1/2 cups Bomba or Calasparra rice", "4 cups fish stock, warmed", "1/2 lb mixed seafood (shrimp, mussels, clams, calamari)",
-                            "1 pinch saffron threads", "1 onion, finely diced", "1 red bell pepper, sliced",
-                            "3 cloves garlic, minced", "1 tomato, grated", "1/2 cup frozen peas",
-                            "3 tbsp olive oil", "1 tsp smoked paprika", "Lemon wedges for serving"
-                        ],
-                        "instructions": [
-                            "Steep saffron threads in 1/4 cup warm fish stock for 10 minutes.",
-                            "Heat olive oil in a large paella pan over medium-high heat.",
-                            "Sear seafood until just cooked, then remove and set aside.",
-                            "Sauté onion, bell pepper, and garlic until softened.",
-                            "Add grated tomato and smoked paprika, cook until thickened.",
-                            "Add rice and stir to coat, toasting for 2 minutes.",
-                            "Pour in saffron-infused stock and remaining fish stock. Bring to a simmer.",
-                            "Arrange seafood and peas over the rice. Do not stir from this point.",
-                            "Cook for 15-20 minutes until liquid is absorbed and rice is cooked.",
-                            "Increase heat for the last 2 minutes to create socarrat (crispy bottom).",
-                            "Rest for 5 minutes before serving with lemon wedges."
-                        ],
-                        "tips": [
-                            "Use a traditional paella pan for even heat distribution.",
-                            "Do not stir after adding the seafood to create the characteristic texture.",
-                            "For authentic flavor, use real saffron - it's worth the investment.",
-                            "Let the paella rest before serving to allow flavors to meld."
-                        ],
-                        "score": 94
-                    },
-                    {
-                        "name": "Herb-Crusted Rack of Lamb with Red Wine Reduction",
-                        "cuisine": "French",
-                        "difficulty": "Advanced",
-                        "prep_time": "1 hour 30 minutes",
-                        "ingredients": [
-                            "1 rack of lamb (8 ribs)", "2 cloves garlic, minced", "2 tbsp fresh rosemary, chopped",
-                            "2 tbsp fresh thyme, chopped", "1/4 cup Dijon mustard", "1 cup breadcrumbs",
-                            "1/2 cup parsley, chopped", "1/2 cup red wine", "1 cup beef stock",
-                            "2 tbsp butter", "Salt and pepper to taste"
-                        ],
-                        "instructions": [
-                            "Preheat oven to 400°F (200°C).",
-                            "Season the rack of lamb with salt and pepper.",
-                            "Sear the lamb in a hot pan on all sides until browned.",
-                            "Mix garlic, rosemary, thyme, and Dijon mustard. Coat the lamb with this mixture.",
-                            "Combine breadcrumbs and parsley, then press onto the mustard-coated lamb.",
-                            "Roast in the oven for 20-25 minutes for medium-rare.",
-                            "While the lamb rests, prepare the reduction by deglazing the pan with red wine.",
-                            "Add beef stock and reduce by half. Finish with butter.",
-                            "Slice the lamb between the ribs and serve with the reduction sauce."
-                        ],
-                        "tips": [
-                            "Let the lamb come to room temperature before cooking for even doneness.",
-                            "Use a meat thermometer to ensure perfect cooking (125°F for medium-rare).",
-                            "Allow the lamb to rest for 10 minutes before slicing to retain juices.",
-                            "Strain the reduction sauce for a smoother texture."
-                        ],
-                        "score": 96
-                    }
-                ];
-                
-                // Select a random fallback recipe
-                const recipe = fallbackRecipes[Math.floor(Math.random() * fallbackRecipes.length)];
-                
-                // Add a note about using a fallback recipe
-                addMessage("Note: Currently using our premium recipe collection. Our AI culinary master is preparing your personalized recipe.", 'bot');
-                
-                // Display the recipe
-                displayRecipe(recipe);
-            }
-            
-            // Add message to chat
-            function addMessage(text, sender) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${sender}-message`;
-                messageDiv.innerHTML = `<p>${text}</p>`;
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-            
-            // Display recipe in a formatted way
-            function displayRecipe(recipe) {
-                const recipeDiv = document.createElement('div');
-                recipeDiv.className = 'message bot-message';
-                
-                recipeDiv.innerHTML = `
-                    <div class="recipe-card">
-                        <div class="recipe-header">
-                            <h3 class="recipe-title">${recipe.name}</h3>
-                            <div class="recipe-meta">
-                                <span>${recipe.cuisine}</span>
-                                <span>${recipe.difficulty}</span>
-                                <span>${recipe.prep_time}</span>
-                            </div>
-                        </div>
-                        
-                        <div class="recipe-section">
-                            <h4>Ingredients</h4>
-                            <ul class="ingredients-list">
-                                ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div class="recipe-section">
-                            <h4>Instructions</h4>
-                            <ol class="instructions-list">
-                                ${recipe.instructions.map(step => `<li>${step}</li>`).join('')}
-                            </ol>
-                        </div>
-                        
-                        <div class="recipe-section">
-                            <h4>Chef's Notes</h4>
-                            <ul class="tips-list">
-                                ${recipe.tips.map(tip => `<li>${tip}</li>`).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div class="recipe-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">${recipe.score}/100</div>
-                                <div class="stat-label">Exquisite Rating</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">Premium</div>
-                                <div class="stat-label">Ingredient Tier</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">Balanced</div>
-                                <div class="stat-label">Flavor Profile</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                chatMessages.appendChild(recipeDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-            
-            // Event listeners
-            sendMessageBtn.addEventListener('click', sendMessage);
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-            
-            // Animation on scroll
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            function checkFade() {
-                fadeElements.forEach(element => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    const elementBottom = element.getBoundingClientRect().bottom;
-                    const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
-                    
-                    if (isVisible) {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }
+        ];
+
+        function appendMessage(message, type="ai") {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', type);
+            msgDiv.innerHTML = message;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function useFallbackRecipe(input) {
+            const recipe = fallbackRecipes[Math.floor(Math.random() * fallbackRecipes.length)];
+            const recipeHTML = `<strong>${recipe.name}</strong> (${recipe.cuisine})<br>
+            <strong>Ingredients:</strong> ${recipe.ingredients.join(", ")}<br>
+            <strong>Instructions:</strong> ${recipe.instructions.join(" → ")}<br>
+            <strong>Tips:</strong> ${recipe.tips.join(", ")}<br>
+            <em>Score: ${recipe.score}</em>`;
+            appendMessage(recipeHTML, "ai");
+        }
+
+        async function fetchRecipe(input) {
+            try {
+                errorMessage.textContent = "";
+                appendMessage('<span>Generating recipe <span class="spinner"></span></span>', 'ai');
+                const res = await fetch(API_ENDPOINT, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ message: input })
                 });
+                const data = await res.json();
+                chatMessages.lastChild.remove(); // Remove spinner
+                if(data && data.recipe) {
+                    const recipe = data.recipe;
+                    const recipeHTML = `<strong>${recipe.name}</strong> (${recipe.cuisine})<br>
+                    <strong>Ingredients:</strong> ${recipe.ingredients.join(", ")}<br>
+                    <strong>Instructions:</strong> ${recipe.instructions.join(" → ")}<br>
+                    <strong>Tips:</strong> ${recipe.tips.join(", ")}<br>
+                    <em>Score: ${recipe.score}</em>`;
+                    appendMessage(recipeHTML, "ai");
+                } else {
+                    chatMessages.lastChild.remove();
+                    useFallbackRecipe(input);
+                }
+            } catch(err) {
+                chatMessages.lastChild.remove();
+                errorMessage.textContent = "Failed to fetch recipe. Using fallback recipes.";
+                useFallbackRecipe(input);
             }
-            
-            // Set initial state for fade elements
-            fadeElements.forEach(element => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(20px)';
-                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            });
-            
-            // Check on load and scroll
-            window.addEventListener('load', checkFade);
-            window.addEventListener('scroll', checkFade);
-            checkFade(); // Initial check
+        }
+
+        sendBtn.addEventListener('click', () => {
+            const input = chatInput.value.trim();
+            if(!input) return;
+            appendMessage(input, "user");
+            chatInput.value = "";
+            fetchRecipe(input);
+        });
+
+        chatInput.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter') sendBtn.click();
+        });
+
+        createRecipeBtn.addEventListener('click', () => {
+            const input = chatInput.value.trim() || "French luxury style recipe";
+            appendMessage(input, "user");
+            chatInput.value = "";
+            fetchRecipe(input);
         });
     </script>
 </body>
