@@ -88,12 +88,21 @@
         .chat-header h2 { font-size: 20px; font-family: 'Cinzel', serif; background: linear-gradient(45deg, var(--gold-light), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .chat-messages { height: 500px; overflow-y: auto; padding: 25px; background: rgba(10,10,10,0.5); }
         .message { margin-bottom: 25px; max-width: 80%; padding: 20px; border-radius: 4px; position: relative; font-size: 15px; }
-        .message.user { background: rgba(142,108,73,0.15); align-self: flex-end; color: var(--light); }
+        .message.user { background: rgba(142,108,73,0.15); margin-left: auto; color: var(--light); }
         .message.ai { background: rgba(212,175,55,0.15); color: var(--light); }
         .chat-input { display: flex; gap: 15px; padding: 20px; border-top: 1px solid rgba(212,175,55,0.1); }
         .chat-input input { flex: 1; padding: 15px; border-radius: 4px; border: none; font-size: 15px; background: rgba(0,0,0,0.2); color: var(--light); outline: none; }
         .chat-input button { background: var(--accent); color: var(--dark); border: none; padding: 15px 25px; font-size: 15px; font-weight: 600; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; }
         .chat-input button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
+
+        /* ====== RECIPE CARD ====== */
+        .recipe-card { background: rgba(20, 20, 20, 0.7); border-radius: 8px; padding: 20px; margin: 15px 0; border: 1px solid rgba(212, 175, 55, 0.2); }
+        .recipe-name { font-family: 'Cinzel', serif; font-size: 24px; color: var(--accent); margin-bottom: 10px; }
+        .recipe-section { margin: 15px 0; }
+        .recipe-section h4 { font-family: 'Playfair Display', serif; color: var(--gold-light); margin-bottom: 8px; font-size: 18px; }
+        .recipe-list { padding-left: 20px; }
+        .recipe-list li { margin-bottom: 8px; }
+        .recipe-score { font-style: italic; color: var(--secondary); text-align: right; margin-top: 15px; }
 
         /* ====== SPINNER ====== */
         .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid rgba(212,175,55,0.3); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin-left: 10px; }
@@ -102,6 +111,15 @@
         /* ====== ERROR MESSAGE ====== */
         .error-message { color: #ff4c4c; text-align: center; margin-top: 10px; font-weight: 500; }
 
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            nav ul { gap: 15px; justify-content: center; }
+            .hero h2 { font-size: 36px; }
+            .hero p { font-size: 16px; }
+            .chat-messages { height: 400px; }
+            .message { max-width: 90%; }
+        }
     </style>
 </head>
 <body>
@@ -142,7 +160,12 @@
             <div class="chat-header">
                 <h2>Recipe AI Chat</h2>
             </div>
-            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai">
+                    <strong>Bonjour, Chef!</strong> I am your AI culinary assistant, specialized in French haute cuisine. 
+                    Tell me what ingredients you have or what type of dish you'd like to create, and I'll craft an exquisite recipe for you.
+                </div>
+            </div>
             <div class="chat-input">
                 <input type="text" id="chatInput" placeholder="Enter ingredients or recipe style..." />
                 <button id="sendBtn">Send</button>
@@ -152,77 +175,76 @@
     </div>
 
     <script>
-        const API_ENDPOINT = '/api/recipe'; // Replace with your live backend if available
+        const API_ENDPOINT = '/api/recipe';
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
         const sendBtn = document.getElementById('sendBtn');
         const createRecipeBtn = document.getElementById('createRecipeBtn');
         const errorMessage = document.getElementById('errorMessage');
 
-        const fallbackRecipes = [
-            {
-                name: "Truffle Infused Coq au Vin",
-                cuisine: "French",
-                ingredients: ["Chicken", "Red Wine", "Mushrooms", "Black Truffle"],
-                instructions: ["Marinate chicken in wine", "Sauté mushrooms", "Cook chicken slowly", "Add truffle"],
-                tips: ["Use fresh truffle for luxury taste"],
-                score: 98
-            },
-            {
-                name: "Foie Gras Terrine",
-                cuisine: "French",
-                ingredients: ["Foie Gras", "Salt", "Pepper", "Armagnac"],
-                instructions: ["Season foie gras", "Layer in terrine mold", "Bake gently", "Chill overnight"],
-                tips: ["Serve with brioche and fig jam"],
-                score: 95
-            }
-        ];
-
         function appendMessage(message, type="ai") {
             const msgDiv = document.createElement('div');
             msgDiv.classList.add('message', type);
-            msgDiv.innerHTML = message;
+            
+            if (type === "ai" && typeof message === "object") {
+                // Format recipe as a card
+                const recipe = message;
+                msgDiv.innerHTML = `
+                    <div class="recipe-card">
+                        <div class="recipe-name">${recipe.name}</div>
+                        <div class="recipe-section">
+                            <h4>Ingredients</h4>
+                            <ul class="recipe-list">
+                                ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="recipe-section">
+                            <h4>Instructions</h4>
+                            <ol class="recipe-list">
+                                ${recipe.instructions.map(step => `<li>${step}</li>`).join('')}
+                            </ol>
+                        </div>
+                        <div class="recipe-section">
+                            <h4>Chef's Tips</h4>
+                            <ul class="recipe-list">
+                                ${recipe.tips.map(tip => `<li>${tip}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="recipe-score">Culinary Excellence Score: ${recipe.score}/100</div>
+                    </div>
+                `;
+            } else {
+                msgDiv.innerHTML = message;
+            }
+            
             chatMessages.appendChild(msgDiv);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function useFallbackRecipe(input) {
-            const recipe = fallbackRecipes[Math.floor(Math.random() * fallbackRecipes.length)];
-            const recipeHTML = `<strong>${recipe.name}</strong> (${recipe.cuisine})<br>
-            <strong>Ingredients:</strong> ${recipe.ingredients.join(", ")}<br>
-            <strong>Instructions:</strong> ${recipe.instructions.join(" → ")}<br>
-            <strong>Tips:</strong> ${recipe.tips.join(", ")}<br>
-            <em>Score: ${recipe.score}</em>`;
-            appendMessage(recipeHTML, "ai");
         }
 
         async function fetchRecipe(input) {
             try {
                 errorMessage.textContent = "";
-                appendMessage('<span>Generating recipe <span class="spinner"></span></span>', 'ai');
+                appendMessage('<span>Creating your gourmet recipe <span class="spinner"></span></span>', 'ai');
+                
                 const res = await fetch(API_ENDPOINT, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ message: input })
                 });
+                
                 const data = await res.json();
+                
                 chatMessages.lastChild.remove(); // Remove spinner
                 if(data && data.recipe) {
-                    const recipe = data.recipe;
-                    const recipeHTML = `<strong>${recipe.name}</strong> (${recipe.cuisine})<br>
-                    <strong>Ingredients:</strong> ${recipe.ingredients.join(", ")}<br>
-                    <strong>Instructions:</strong> ${recipe.instructions.join(" → ")}<br>
-                    <strong>Tips:</strong> ${recipe.tips.join(", ")}<br>
-                    <em>Score: ${recipe.score}</em>`;
-                    appendMessage(recipeHTML, "ai");
+                    appendMessage(data.recipe, "ai");
                 } else {
                     chatMessages.lastChild.remove();
-                    useFallbackRecipe(input);
+                    errorMessage.textContent = "Failed to generate recipe. Please try again.";
                 }
             } catch(err) {
                 chatMessages.lastChild.remove();
-                errorMessage.textContent = "Failed to fetch recipe. Using fallback recipes.";
-                useFallbackRecipe(input);
+                errorMessage.textContent = "An error occurred. Please try again.";
+                console.error(err);
             }
         }
 
@@ -247,4 +269,3 @@
     </script>
 </body>
 </html>
-
